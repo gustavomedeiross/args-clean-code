@@ -99,41 +99,19 @@ public class Args {
     }
 
     public boolean getBoolean(char arg) {
-        ArgumentMarshaler am = marshalers.get(arg);
-        boolean b = false;
-        try {
-            b = am != null && (Boolean) am.get();
-        } catch(ClassCastException e) {
-            b = false;
-        }
-        return b;
+        return BooleanArgumentMarshaler.getValue(marshalers.get(arg));
     }
 
     public String getString(char arg) {
-        ArgumentMarshaler am = marshalers.get(arg);
-        try {
-            return am == null ? "" : (String) am.get();
-        } catch(ClassCastException e) {
-            return "";
-        }
+        return StringArgumentMarshaler.getValue(marshalers.get(arg));
     }
 
     public int getInt(char arg) {
-        ArgumentMarshaler am = marshalers.get(arg);
-        try {
-            return am == null ? 0 : (Integer) am.get();
-        } catch (Exception e) {
-            return 0;
-        }
+        return IntegerArgumentMarshaler.getValue(marshalers.get(arg));
     }
 
     public double getDouble(char arg) {
-        ArgumentMarshaler am = marshalers.get(arg);
-        try {
-            return am == null ? 0 : (Double) am.get();
-        } catch (Exception e) {
-            return 0.0;
-        }
+        return DoubleArgumentMarshaler.getValue(marshalers.get(arg));
     }
 
     public boolean has(char arg) {

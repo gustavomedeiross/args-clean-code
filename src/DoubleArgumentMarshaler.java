@@ -21,4 +21,12 @@ public class DoubleArgumentMarshaler implements ArgumentMarshaler {
     public Object get() {
         return doubleValue;
     }
+
+    public static double getValue(ArgumentMarshaler am) {
+        try {
+            return am != null ? (Double) am.get() : 0.0;
+        } catch (Exception e) {
+            return 0.0;
+        }
+    }
 }
